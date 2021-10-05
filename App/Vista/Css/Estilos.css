@@ -1,0 +1,167 @@
+body{
+  overflow-x: hidden;
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+.background{
+  background: #383D3E;
+  color: #FFFFFF;
+  box-shadow: 0px 0px 14px 2px #000000;
+}
+
+.card{
+  border-radius: 5px;
+}
+
+.btn-primary{
+  background: #FFEC00;
+  border-radius: 30px;
+  border: transparent;
+  color: #383D3E;
+}
+
+.btn-primary:hover{
+  background: #FFF358;
+  color: #383D3E;
+}
+
+.btn-primary:focus{
+  background: #FFEC00;
+  color: #383D3E;
+}
+
+.btn-secondary{
+  background: #FFFFFF;
+  border-radius: 30px;
+  border: transparent;
+  color: #383D3E;
+}
+
+.btn-secondary:hover{
+  background: #D2D2D2;
+  color: #383D3E;
+}
+
+.btn-secondary:focus{
+  background: #FFFFFF;
+  color: #383D3E;
+}
+
+.btn-tertiary{
+  background: #0DFF00;
+  border-radius: 30px;
+  border: transparent;
+  color: #383D3E;
+}
+
+.btn-tertiary:hover{
+  background: #4AF541;
+  color: #383D3E;
+}
+
+.btn-tertiary:focus{
+  background: #0DFF00;
+  color: #383D3E;
+}
+
+.btn-quaternary{
+  background: #FF0007;
+  border-radius: 30px;
+  border: transparent;
+  color: #FFFFFF;
+}
+
+.btn-quaternary:hover{
+  background: #fa3138;
+  color: #FFFFFF;
+}
+
+.btn-quaternary:focus{
+  background: #FF0007;
+  color: #FFFFFF;
+}
+
+.btn-quinternary{
+  background: #8214FF;
+  border-radius: 30px;
+  border: transparent;
+  color: #FFFFFF;
+}
+
+.btn-quinternary:hover{
+  background: #9232ff;
+  color: #FFFFFF;
+}
+
+.btn-quinternary:focus{
+  background: #8214FF;
+  color: #FFFFFF;
+}
+
+.link{
+  color: #FFEC00;
+}
+
+.link:hover{
+  color: #f5ED8F;
+}
+
+#cardCont{
+  width: 27rem;
+}
+
+.perfil{
+  width: 40rem;
+}
+
+.linkDatosClase{
+  color: #FFFFFF;
+}
+
+.linkDatosClase:hover{
+  color: #FFEC00;
+}
+
+.linkDatosClase:focus{
+  color: #FFEC00;
+}
+
+.linkDatosClaseTexto{
+  width: fit-content;
+  padding: 0;
+}
+
+.esconde{
+  display: none!important;
+}
+
+.invalid-feedback{
+  color:#FFCCCE
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid{
+  border-color: #FFCCCE;
+}
+
+.modal-grande{
+  max-width: 650px;
+}
+
+.punto{
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #383D3E;
+  max-width: 4px;
+  max-height: 4px;
+  margin: auto;
+}
+
+.puntoAmarillo{
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #FFEC00;
+  max-width: 4px;
+  max-height: 4px;
+  margin: auto;
+}
