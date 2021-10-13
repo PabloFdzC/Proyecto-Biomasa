@@ -48,6 +48,16 @@ class Usuario{
     this.#email=email;
   }
 
+  convertirAVista(){
+    var obj = {
+      tipoUsuario:this.#tipoUsuario,
+      nombre:this.#nombre,
+      telefono:this.#telefono,
+      email:this.#email
+    }
+    return obj;
+  }
+
 }
 
 module.exports = Usuario;

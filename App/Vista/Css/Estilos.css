@@ -2,11 +2,16 @@ body{
   overflow-x: hidden;
   min-height: 75rem;
   padding-top: 4.5rem;
+  background-color: #184D47;
+}
+
+textarea {
+  resize: none;
 }
 
 .background{
-  background: #383D3E;
-  color: #FFFFFF;
+  background: #FAD586;
+  color: #184D47;
   box-shadow: 0px 0px 14px 2px #000000;
 }
 
@@ -15,54 +20,54 @@ body{
 }
 
 .btn-primary{
-  background: #FFEC00;
+  background: #184D47;
   border-radius: 30px;
   border: transparent;
-  color: #383D3E;
+  color: #FFFFFF;
 }
 
 .btn-primary:hover{
-  background: #FFF358;
-  color: #383D3E;
+  background: #40978D;
+  color: #FAD586;
 }
 
 .btn-primary:focus{
-  background: #FFEC00;
-  color: #383D3E;
+  background: #184D47;
+  color: #FAD586;
 }
 
 .btn-secondary{
-  background: #FFFFFF;
+  background: #85603F;
   border-radius: 30px;
   border: transparent;
-  color: #383D3E;
+  color: #FFFFFF;
 }
 
 .btn-secondary:hover{
-  background: #D2D2D2;
-  color: #383D3E;
+  background: #c1936a;
+  color: #FFFFFF;
 }
 
 .btn-secondary:focus{
-  background: #FFFFFF;
-  color: #383D3E;
+  background: #85603F;
+  color: #FAD586;
 }
 
 .btn-tertiary{
   background: #0DFF00;
   border-radius: 30px;
   border: transparent;
-  color: #383D3E;
+  color: #FAD586;
 }
 
 .btn-tertiary:hover{
   background: #4AF541;
-  color: #383D3E;
+  color: #FAD586;
 }
 
 .btn-tertiary:focus{
   background: #0DFF00;
-  color: #383D3E;
+  color: #FAD586;
 }
 
 .btn-quaternary{
@@ -100,11 +105,11 @@ body{
 }
 
 .link{
-  color: #FFEC00;
+  color: #184D47;
 }
 
 .link:hover{
-  color: #f5ED8F;
+  color: #40978D;
 }
 
 #cardCont{
@@ -120,11 +125,11 @@ body{
 }
 
 .linkDatosClase:hover{
-  color: #FFEC00;
+  color: #184D47;
 }
 
 .linkDatosClase:focus{
-  color: #FFEC00;
+  color: #184D47;
 }
 
 .linkDatosClaseTexto{
@@ -151,7 +156,7 @@ body{
 .punto{
   padding: 4px;
   border-radius: 50%;
-  background-color: #383D3E;
+  background-color: #FAD586;
   max-width: 4px;
   max-height: 4px;
   margin: auto;
@@ -160,7 +165,7 @@ body{
 .puntoAmarillo{
   padding: 4px;
   border-radius: 50%;
-  background-color: #FFEC00;
+  background-color: #184D47;
   max-width: 4px;
   max-height: 4px;
   margin: auto;

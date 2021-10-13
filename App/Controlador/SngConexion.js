@@ -1,4 +1,4 @@
-const Conexion = require("./Conexion.js");
+const Conexion = require("./ConexionBaseDatos.js");
 
 class ConexionSng{
   static #instance = null;

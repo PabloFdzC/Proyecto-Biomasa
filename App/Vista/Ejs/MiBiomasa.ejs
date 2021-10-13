@@ -1,10 +1,14 @@
 <%- include('Header.ejs'); %>
-<body id="body" class="d-flex flex-column min-vh-100" style="background-image: url('../Images/victor-freitas-nlZTjUZX2qo-unsplash.jpg');/* height: 100%; */background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-position-y: center;background-position-x: center;"></body>
+<body id="body" class="d-flex flex-column min-vh-100">
+<%- include('Navegacion.ejs', {ventana:"MIBIOMASA", tipoUsuario: "VENDEDOR"}); %>
   <div class="card mx-auto background cardLista mb-2">
     <div class="card-body" id="cardB">
       <div class="row justify-content-between">
-        <div class="col-12">
-          <h1 class="card-title tituloLista">Biomasas</h1>
+        <div class="col-6">
+          <h1 class="card-title tituloLista">Mi biomasa</h1>
+        </div>
+        <div class="d-grid col-2">
+          <button type="button" class="btn btn-primary activaModal" value="AGREGAR" data-bs-toggle="modal" data-bs-target="#modalAgregarModificar">Agregar</button>
         </div>
       </div>
     </div>
@@ -12,9 +16,102 @@
   <div id="biomasas">
 
   </div>
+  <div class="modal fade" id="modalAgregarModificar" tabindex="-1" aria-labelledby="agregarModificar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 620px;">
+      <div class="modal-content background">
+        <div class="modal-body d-grid gap-4">
+          <h3 class="text-center" id="agregarModificar">Agregar biomasa</h3>
+          <form class="d-grid gap-4 needs-validation"  id="formBiomasa">
+            <div class="d-grid col-11 mx-auto gap-2">
+              <div class="row">
+                <div class="d-grid col-12">
+                  <label for="Nombre" class="form-label">Nombre de biomasa</label>
+                  <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de biomasa" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="d-grid col-6">
+                  <label for="Cantidad" class="form-label">Cantidad</label>
+                  <input type="number" class="form-control" id="Cantidad" name="Cantidad" aria-describedby="Cantidad" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
+                </div>
+                <div class="d-grid col-6">
+                  <label for="Unidad" class="form-label">Unidad</label>
+                  <select class="form-control" id="Unidad" name="Unidad" aria-describedby="Unidad" required>
+                    <option value="Kilogramos">Kilogramos</option>
+                    <option value="Litros">Litros</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="d-grid col-6">
+                  <label for="Precio" class="form-label">Precio por unidad</label>
+                  <input type="text" class="form-control" id="Precio" name="Precio" aria-describedby="Precio por unidad" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="d-grid col-12">
+                  <label for="Descripcion" class="form-label">Descripcion</label>
+                  <textarea class="form-control" id="Descripcion" name="Descripcion" aria-describedby="Descripcion" required rows="3" cols="33"></textarea>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="d-grid col-6" style="height: fit-content;">
+                  <label for="annadirEtiqueta" class="form-label">Añadir etiqueta</label>
+                  <div class="row">
+                    <div class="d-grid col-10">
+                      <select name="annadirEtiqueta" id="annadirEtiqueta" aria-describedby="Añadir Etiqueta" class="form-control">
+                        <option value="" disabled selected hidden>Añadir etiqueta</option>
+                      </select>
+                    </div>
+                    <div class="d-grid col-2">
+                      <button class="btn btn-primary" type="button" id="annadeEtiqueta">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <h3 class="tituloDatos">Etiquetas:</h3>
+                  <div class="row justify-content-center" id="etiquetasEscogidos">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-grid col-11 mx-auto gap-2">
+              <div class="row justify-content-end">
+                <div class="d-grid col-2">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                </div>
+                <div class="d-grid col-2">
+                  <button type="submit" form="formBiomasa" class="btn btn-primary">Enviar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <%- include('Mensaje.ejs'); %>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../Utilidades.js"></script>
   <script src="../Js/Mensaje.js"></script>
+  <script src="../Biomasa.js"></script>
+  <script src="../Etiqueta.js"></script>
+  <script src="../Js/MiBiomasa.js"></script>
 </body>
 </html>
