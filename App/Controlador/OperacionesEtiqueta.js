@@ -4,7 +4,7 @@ const OperacionesEtiqueta = Router({caseSensitive:true});
 const ctrlSng = SngControlador.getInstance();
 const ctrlEtiq = ctrlSng.getControladorEtiqueta();
 
-OperacionesEtiqueta.post('/nuevaEtiqueta', async function(req, res){
+OperacionesEtiqueta.post('/agregarEtiqueta', async function(req, res){
   try{
     var contrasenna = await ctrlEtiq.agregar(req.body);
     res.send({contrasenna});
@@ -20,7 +20,6 @@ OperacionesEtiqueta.post('/nuevaEtiqueta', async function(req, res){
 
 OperacionesEtiqueta.post('/modificarEtiqueta', async function(req, res){
   try{
-    //req.body.email = req.session.email;
     var r = await ctrlEtiq.modificar(req.body);
     res.send(r);
   }catch(err){
@@ -32,7 +31,6 @@ OperacionesEtiqueta.post('/modificarEtiqueta', async function(req, res){
 
 OperacionesEtiqueta.post('/eliminarEtiqueta', async function(req, res){
   try{
-    //req.body.email = req.session.email;
     var r = await ctrlEtiq.eliminar(req.body);
     res.send(r);
   }catch(err){
@@ -44,8 +42,8 @@ OperacionesEtiqueta.post('/eliminarEtiqueta', async function(req, res){
 
 OperacionesEtiqueta.get('/mostrarEtiqueta', async function(req, res){
     try{
-        var resultado = await ctrlEtiq.mostrar();
-        res.render('Etiquetas.ejs', {resultado});
+        var lista = await ctrlEtiq.mostrar(req.query);
+        res.render('EtiquetaLista.ejs', {lista});
     }catch(err){
       console.log(err);
       res.status(400);

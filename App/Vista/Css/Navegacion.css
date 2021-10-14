@@ -1,0 +1,26 @@
+.navbar-dark .navbar-nav .nav-link{
+  color:#184D47;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+  color:#40978D;
+}
+
+.navbar-dark .navbar-nav .nav-link.active{
+  color: #184D47;
+}
+
+.navbar-dark .nav-link .dropdown-toggle{
+  color: #184D47;
+}
+
+.dropdown-menu-dark{
+  color:#184D47;
+  background-color: #FAD586;
+  border-color: #FAD586;
+}
+
+.navbar-dark .navbar-toggler {
+    color: #184D47;
+    border-color: #184D47;
+}

@@ -1,0 +1,68 @@
+<% if(lista.length == 0) { %>
+    <div class="card mx-auto background cardLista mt-2">
+      <div class="card-body" id="cardB">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="card-title tituloElementoLista text-center">Nada para mostrar</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>
+  <% for(let biomasa of lista){ %>
+    <div class="card mx-auto background cardLista mt-2">
+      <div class="card-body" id="cardB">
+        <div class="row justify-content-between">
+          <div class="col-8">
+            <h2 class="card-title tituloElementoLista"><%= biomasa.getNombre() %></h2>
+          </div>
+          <div class="col-4">
+            <% if(!miBiomasa) { %>
+            <div class="row">
+              <div class="d-grid col-6">
+                <button type="button" class="btn btn-secondary comprarBiomasa" value="<%= biomasa.getId() %>">Comprar</button>
+              </div>
+            </div>
+            <% } else { %>
+            <div class="row">
+              <div class="d-grid col-6">
+                <button type="button" class="btn btn-secondary eliminarBiomasa" value="<%= biomasa.getId() %>">Eliminar</button>
+              </div>
+              <div class="d-grid col-6">
+                <button type="button" class="btn btn-primary activaModal" value="<%= biomasa.getId() %>" data-bs-toggle="modal" data-bs-target="#modalCrearModificar">Modificar</button>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="row p-3">
+          <div class="col-6">
+            <div class="d-flex justify-content-start">
+              <h3 class="tituloDatos ">Edad:</h3>
+              <div class="ms-2"><%= biomasa.getEdad() %></div>
+            </div>
+            <div class="d-flex justify-content-start">
+              <h3 class="tituloDatos">Teléfono:</h3>
+              <div class="ms-2"><%= biomasa.getTelefono() %>  </div>
+            </div>
+            <div class="d-flex justify-content-start">
+              <h3 class="tituloDatos">E-mail:</h3>
+              <div class="ms-2"><%= biomasa.getEmail() %></div>
+            </div>
+            <div class="d-flex justify-content-start">
+              <h3 class="tituloDatos">Identificación:</h3>
+              <div class="ms-2"><%= biomasa.getIdentificacion() %></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <h3 class="tituloDatos">Servicios:</h3>
+            <div class="row justify-content-center">
+              <% for(let servicio of biomasa.getServicios()){ %>
+              <div class="servicio ps-3 pe-3 pt-2 pb-2 text-center m-1"><%= servicio.getNombre() %></div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>

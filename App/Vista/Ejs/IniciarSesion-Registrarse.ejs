@@ -1,5 +1,5 @@
 <%- include('Header.ejs'); %>
-  <body id="body" class="d-flex flex-column min-vh-100" style="background-image: url('../Images/gina-lin-m27OTMegUyA-unsplash.jpg');/* height: 100%; */background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-position-y: center;background-position-x: center;">
+  <body id="body" class="d-flex flex-column min-vh-100">
     <div class="card mx-auto my-auto background " id="cardCont">
       <div class="card-body" id="cardB">
         <div class="d-grid gap-4" id="IniciarSesion">
@@ -7,12 +7,12 @@
           <form class="d-grid gap-4 form" id="formIniciarSesion">
             <div class="d-grid col-9 mx-auto gap-2">
               <div>
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="Email">
+                <label for="Email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="Email" name="Email" aria-describedby="Email">
               </div>
               <div>
-                <label for="contrasenna" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrasenna" name="contrasenna">
+                <label for="Contrasenia" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="Contrasenia" name="Contrasenia">
               </div>
             </div>
             <div class="d-grid col-5 mx-auto text-center gap-2">
@@ -27,52 +27,35 @@
             <div class="d-grid col-11 mx-auto gap-2">
               <div class="row">
                 <div class="d-grid col-6">
-                  <label for="primerNombre" class="form-label">Primer nombre</label>
-                  <input type="text" class="form-control" id="primerNombre" name="primerNombre" aria-describedby="Primer nombre">
+                  <label for="Nombre" class="form-label">Nombre de empresa</label>
+                  <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de empresa">
                 </div>
                 <div class="d-grid col-6">
-                  <label for="segundoNombre" class="form-label">Segundo nombre</label>
-                  <input type="text" class="form-control" id="segundoNombre" name="segundoNombre" aria-describedby="Segundo nombre">
-                </div>
-              </div>
-              <div class="row">
-                <div class="d-grid col-6">
-                  <label for="primerApellido" class="form-label">Primer apellido</label>
-                  <input type="text" class="form-control" id="primerApellido" name="primerApellido" aria-describedby="Primer apellido">
-                </div>
-                <div class="d-grid col-6">
-                  <label for="segundoApellido" class="form-label">Segundo apellido</label>
-                  <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" aria-describedby="Segundo apellido">
+                  <label for="Email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="EmailR" name="Email" aria-describedby="Email">
                 </div>
               </div>
               <div class="row">
                 <div class="d-grid col-6">
-                  <label for="identificacion" class="form-label">Identificación</label>
-                  <input type="text" class="form-control" id="identificacion" name="identificacion" aria-describedby="Identificación">
+                  <label for="Telefono" class="form-label">Teléfono</label>
+                  <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono">
                 </div>
                 <div class="d-grid col-6">
-                  <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
-                  <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" aria-describedby="Fecha de nacimiento">
-                </div>
-              </div>
-              <div class="row">
-                <div class="d-grid col-6">
-                  <label for="telefono" class="form-label">Teléfono</label>
-                  <input type="text" class="form-control" id="telefono" name="telefono" aria-describedby="Teléfono">
-                </div>
-                <div class="d-grid col-6">
-                  <label for="email" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" id="emailR" name="email" aria-describedby="Email">
+                  <label for="TipoUsuario" class="form-label">Tipo de usuario</label>
+                  <select class="form-control" id="TipoUsuario" name="TipoUsuario" aria-describedby="Tipo de usuario">
+                    <option value="Comprador">Comprador</option>
+                    <option value="Vendedor">Vendedor</option>
+                  </select>
                 </div>
               </div>
               <div class="row">
                 <div class="d-grid col-6">
-                  <label for="contrasenna" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="contrasennaR" name="contrasenna" aria-describedby="Contraseña">
+                  <label for="Contrasenia" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="ContraseniaR" name="Contrasenia" aria-describedby="Contraseña">
                 </div>
                 <div class="d-grid col-6">
-                  <label for="cContrasenna" class="form-label">Confirmar contraseña</label>
-                  <input type="password" class="form-control" id="cContrasenna" name="cContrasenna" aria-describedby="Confirmar contraseña">
+                  <label for="CContrasenia" class="form-label">Confirmar contraseña</label>
+                  <input type="password" class="form-control" id="CContrasenia" name="CContrasenia" aria-describedby="Confirmar contraseña">
                 </div>
               </div>
             </div>

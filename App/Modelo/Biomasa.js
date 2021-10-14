@@ -77,6 +77,23 @@ class Biomasa{
     this.#usuario=usuario;
   }
 
+  convertirAVista(){
+    var obj = {
+      nombre:this.#nombre,
+      descripcion:this.#descripcion,
+      precio:this.#precio,
+      cantidad:this.#cantidad
+    }
+    var a = [];
+    if(Array.isArray(this.#etiquetas)){
+      for(let e of this.#etiquetas){
+        a.push(e.getNombre());
+      }
+    }
+    obj.etiquetas = a;
+    return obj;
+  }
+
 }
 
 module.exports = Biomasa;

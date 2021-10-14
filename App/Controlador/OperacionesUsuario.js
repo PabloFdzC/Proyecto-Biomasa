@@ -4,10 +4,10 @@ const OperacionesUsuario = Router({caseSensitive:true});
 const ctrlSng = SngControlador.getInstance();
 const ctrlUs = ctrlSng.getControladorUsuario();
 
-OperacionesUsuario.post('/nuevaUsuario', async function(req, res){
+OperacionesUsuario.post('/agregarUsuario', async function(req, res){
   try{
-    var contrasenna = await ctrlUs.agregar(req.body);
-    res.send({contrasenna});
+    var r = await ctrlUs.agregar(req.body);
+    res.send("Ok");
   }catch(err){
     console.log(err);
     res.status(400);
@@ -20,7 +20,7 @@ OperacionesUsuario.post('/nuevaUsuario', async function(req, res){
 
 OperacionesUsuario.post('/modificarUsuario', async function(req, res){
   try{
-    req.body.email = req.session.email;
+    req.body.Id = req.session.Id;
     var r = await ctrlUs.modificar(req.body);
     res.send(r);
   }catch(err){
@@ -32,7 +32,7 @@ OperacionesUsuario.post('/modificarUsuario', async function(req, res){
 
 OperacionesUsuario.post('/modificarUsuarioContrasenna', async function(req, res){
     try{
-      req.body.email = req.session.email;
+      req.body.Id = req.session.Id;
       var r = await ctrlUs.modificarContrasenna(req.body);
       res.send(r);
     }catch(err){
@@ -44,7 +44,6 @@ OperacionesUsuario.post('/modificarUsuarioContrasenna', async function(req, res)
 
 OperacionesUsuario.post('/eliminarUsuario', async function(req, res){
   try{
-    //req.body.email = req.session.email;
     var r = await ctrlUs.eliminar(req.body);
     res.send(r);
   }catch(err){
@@ -55,14 +54,31 @@ OperacionesUsuario.post('/eliminarUsuario', async function(req, res){
 });
 
 OperacionesUsuario.get('/mostrarUsuario', async function(req, res){
-    try{
-        var resultado = await ctrlUs.mostrar();
-        res.render('Usuarios.ejs', {resultado});
-    }catch(err){
-      console.log(err);
-      res.status(400);
+  try{
+      var resultado = await ctrlUs.mostrar();
+      res.render('Usuarios.ejs', {resultado});
+  }catch(err){
+    console.log(err);
+    res.status(400);
+    res.send("Algo salió mal");
+  }
+});
+
+OperacionesUsuario.post('/ingresar', async function(req, res){
+  try{
+    var usuario = await ctrlUs.ingresar(req.body);
+    req.session.Id = usuario.Id;
+    req.session.TipoUsuario = usuario.TipoUsuario;
+    res.send(usuario);
+  }catch(err){
+    console.log(err);
+    res.status(400);
+    if(err.code == "ER_LOGIN")
+      res.send("Email o contraseña incorrecta");
+    else
       res.send("Algo salió mal");
-    }
-  });
+  }
+});
+
 
 module.exports = OperacionesUsuario;

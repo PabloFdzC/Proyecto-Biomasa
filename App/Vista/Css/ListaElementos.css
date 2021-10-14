@@ -1,0 +1,42 @@
+.tituloLista{
+  font-size: x-large;
+}
+
+.tituloElementoLista{
+  font-size: x-large;
+  color: #184D47;
+}
+
+.tituloElementoLista2{
+  font-size: x-large;
+  color: #184D47;
+}
+
+.cardLista{
+  width: 37rem;
+}
+
+.tituloDatos{
+  font-size: large;
+  height: auto;
+}
+
+.servicio{
+  color: #FAD586;
+  background-color: #40978D;
+  border-radius: 20px;
+  width: auto;
+}
+
+.diasCalendarioSala{
+  width: auto;
+}
+
+.listaDiasCalendarioSala{
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+.fechaCalendario{
+  display: block;
+}
