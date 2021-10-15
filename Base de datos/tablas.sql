@@ -1,3 +1,10 @@
+--DROP DATABASE IF EXISTS [BiomasaAP]
+
+--CREATE DATABASE [BiomasaAP]
+
+--USE [BiomasaAP];
+--GO
+
 CREATE TABLE TipoUsuario(
 	  [Id]					INT NOT NULL IDENTITY(1,1),
 	  [Nombre]				VARCHAR(32) NOT NULL,
