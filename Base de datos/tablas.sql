@@ -58,6 +58,14 @@ CREATE TABLE BiomasaXEtiqueta(
 	  FOREIGN KEY ([IdEtiqueta]) REFERENCES [dbo].[Etiqueta] ([ID])
 );
 
+CREATE TABLE Compras(
+	  [Id]					INT NOT NULL IDENTITY(1,1),
+	  [IdBiomasa]			INT NOT NULL,
+	  [IdUsuario]			INT NOT NULL,
+	  [Cantidad]			INT NOT NULL,
+	  [Precio]				MONEY NOT NULL
+);
+
 --DELETE FROM [dbo].[TipoUsuario];
 --DBCC CHECKIDENT([TipoUsuario], RESEED, 0)
 --SELECT * FROM [dbo].[TipoUsuario]
