@@ -19,6 +19,7 @@ SET NOCOUNT ON
 		IF NOT EXISTS (SELECT [Id] FROM [dbo].[Usuario] WHERE [Email] = @Email)
 			BEGIN
 				EXEC [dbo].[CreateUsuario] @IdTipoUsuario, @Nombre, @Telefono, @Email, @Contrasenia
+				SELECT @@identity
 			END
 		ELSE
 			BEGIN
