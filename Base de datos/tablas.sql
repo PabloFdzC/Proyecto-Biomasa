@@ -89,3 +89,7 @@ CREATE TABLE Compras(
 --DELETE FROM [dbo].[BiomasaXEtiqueta];
 --DBCC CHECKIDENT([BiomasaXEtiqueta], RESEED, 0)
 --SELECT * FROM [dbo].[BiomasaXEtiqueta]
+
+--DELETE FROM [dbo].[Compras];
+--DBCC CHECKIDENT([Compras], RESEED, 0)
+--SELECT * FROM [dbo].[Compras]
