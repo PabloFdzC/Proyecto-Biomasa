@@ -33,3 +33,33 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
+
+IF OBJECT_ID('[dbo].[InicioSesion]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[InicioSesion]
+END 
+GO
+CREATE PROC [dbo].[InicioSesion]
+	@Email VARCHAR(32),
+	@Contrasenia VARCHAR(32)
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		IF EXISTS (SELECT [Id] FROM [dbo].[Usuario] WHERE [Email] = @Email AND [Contrasenia] = @Contrasenia)
+			BEGIN
+				SELECT [Id] FROM [dbo].[Usuario] WHERE [Email] = @Email AND [Contrasenia] = @Contrasenia
+			END
+		ELSE
+			BEGIN
+				SELECT -2
+			END
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
