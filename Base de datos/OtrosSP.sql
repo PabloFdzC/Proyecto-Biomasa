@@ -62,22 +62,28 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
-----------------Por hacer----------------
+
 IF OBJECT_ID('[dbo].[ComprarBiomasa]') IS NOT NULL
 BEGIN 
     DROP PROC [dbo].[ComprarBiomasa]
 END 
 GO
 CREATE PROC [dbo].[ComprarBiomasa]
-	@Email VARCHAR(32),
-	@Contrasenia VARCHAR(32)
+	@IdBiomasa INT,
+	@IdUsuario INT,
+	@Cantidad INT,
+	@Precio MONEY
 AS
 BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
-		IF EXISTS (SELECT [Id] FROM [dbo].[Usuario] WHERE [Email] = @Email AND [Contrasenia] = @Contrasenia)
+		IF ((SELECT [Cantidad] FROM [dbo].[Biomasa] WHERE [Id] = @IdBiomasa AND [IdUsuario] = @IdUsuario) > @Cantidad)
 			BEGIN
-				SELECT [Id] FROM [dbo].[Usuario] WHERE [Email] = @Email AND [Contrasenia] = @Contrasenia
+				EXEC [dbo].[CreateCompras] @IdBiomasa, @IdUsuario, @Cantidad, @Precio
+
+				UPDATE [dbo].[Biomasa]
+				SET [Cantidad] = [Cantidad] - @Cantidad
+				WHERE [Id] = @IdBiomasa
 			END
 		ELSE
 			BEGIN
@@ -91,7 +97,7 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
-----------------------------------------------------------------
+
 IF OBJECT_ID('[dbo].[GetBiomasa]') IS NOT NULL
 BEGIN 
     DROP PROC [dbo].[GetBiomasa]
@@ -115,7 +121,7 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
-----------------Por terminar----------------
+
 IF OBJECT_ID('[dbo].[BuscarBiomasa]') IS NOT NULL
 BEGIN 
     DROP PROC [dbo].[BuscarBiomasa]
@@ -131,7 +137,13 @@ SET NOCOUNT ON
 		FROM [dbo].[Biomasa] B
 		INNER JOIN [dbo].[Usuario] US ON B.[IdUsuario] = US.Id
 		INNER JOIN [dbo].[Unidad] UN ON B.IdUnidad = UN.Id
+		INNER JOIN [dbo].[BiomasaXEtiqueta] BE ON B.Id = BE.IdBiomasa
+		INNER JOIN [dbo].[Etiqueta] E ON BE.IdEtiqueta = E.Id
 		WHERE B.[Activo] = 1 AND US.Activo = 1
+			AND ((B.Nombre LIKE '%'+ @Parametro +'%') 
+			OR (US.Nombre LIKE '%'+ @Parametro +'%') 
+			OR (UN.Nombre LIKE '%'+ @Parametro +'%') 
+			OR (E.Nombre LIKE '%'+ @Parametro +'%'))
 	END TRY
 
 	BEGIN CATCH
@@ -140,7 +152,7 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
---------------------------------------------------------------------------------
+
 IF OBJECT_ID('[dbo].[GetEtiquetas]') IS NOT NULL
 BEGIN 
     DROP PROC [dbo].[GetEtiquetas]
