@@ -225,3 +225,27 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
+
+IF OBJECT_ID('[dbo].[GetComprasVendedor]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetComprasVendedor]
+END 
+GO
+CREATE PROC [dbo].[GetComprasVendedor]
+	@IdUsuario INT
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT B.Nombre, C.[Cantidad], C.[Precio]
+		FROM [dbo].[Compras] C
+		INNER JOIN Biomasa B ON [IdBiomasa] = B.[Id]
+		WHERE C.[IdUsuario] = @IdUsuario
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
