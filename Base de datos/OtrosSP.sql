@@ -177,3 +177,30 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
+
+IF OBJECT_ID('[dbo].[GetBiomasaUsuario]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetBiomasaUsuario]
+END 
+GO
+CREATE PROC [dbo].[GetBiomasaUsuario]
+	@IdUsuario INT
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT B.[Id], US.Nombre, UN.Nombre, B.Nombre, B.Descripcion, B.Precio, B.Cantidad
+		FROM [dbo].[Biomasa] B
+		INNER JOIN [dbo].[Usuario] US ON B.[IdUsuario] = US.Id
+		INNER JOIN [dbo].[Unidad] UN ON B.IdUnidad = UN.Id
+		WHERE B.[Activo] = 1 
+			AND US.Activo = 1 
+			AND B.[IdUsuario] = @IdUsuario
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
