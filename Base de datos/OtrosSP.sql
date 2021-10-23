@@ -249,3 +249,25 @@ SET NOCOUNT ON
 SET NOCOUNT OFF
 END
 GO
+
+IF OBJECT_ID('[dbo].[GetTipoUsuario]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetTipoUsuario]
+END 
+GO
+CREATE PROC [dbo].[GetTipoUsuario]
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id, Nombre
+		FROM [dbo].[TipoUsuario]
+		WHERE Id != 1 AND Nombre != 'Administrador'
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
