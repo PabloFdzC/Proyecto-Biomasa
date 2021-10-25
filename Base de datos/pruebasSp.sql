@@ -37,3 +37,4 @@ EXEC [dbo].[GetBiomasaUsuario] 2
 
 EXEC [dbo].[GetTipoUsuario]
 EXEC [dbo].[GetUnidades]
+EXEC [dbo].[GetEtiquetas]

@@ -159,6 +159,27 @@ BEGIN
 END 
 GO
 CREATE PROC [dbo].[GetEtiquetas]
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id, Nombre
+		FROM [dbo].[Etiqueta]
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[GetEtiquetasBiomasa]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetEtiquetasBiomasa]
+END 
+GO
+CREATE PROC [dbo].[GetEtiquetasBiomasa]
 	@IdBiomasa INT
 AS
 BEGIN
