@@ -8,9 +8,13 @@ EXEC [dbo].[RegistrarUsuario] 1, 'Administrador', '88888888', 'admin@admin.com',
 
 EXEC [dbo].[CreateUnidad] 'Tonelada'
 EXEC [dbo].[CreateUnidad] 'Metro cúbico'
+EXEC [dbo].[CreateUnidad] 'Kilogramos'
 
-EXEC [dbo].[CreateEtiqueta] 'Liquido'
+
+EXEC [dbo].[CreateEtiqueta] 'Líquido'
 EXEC [dbo].[CreateEtiqueta] 'Residuo'
-EXEC [dbo].[CreateEtiqueta] 'Solido'
+EXEC [dbo].[CreateEtiqueta] 'Sólido'
 EXEC [dbo].[CreateEtiqueta] 'Leñoso'
 EXEC [dbo].[CreateEtiqueta] 'Herbáceo'
+EXEC [dbo].[CreateEtiqueta] 'Humedo'
+EXEC [dbo].[CreateEtiqueta] 'Seco'
