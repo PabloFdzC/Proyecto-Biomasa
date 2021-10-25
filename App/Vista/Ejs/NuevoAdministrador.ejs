@@ -1,39 +1,27 @@
 <%- include('Header.ejs'); %>
-<body id="body" class="d-flex flex-column min-vh-100">
-  <%- include('Navegacion.ejs', {ventana:"OTRO", tipoUsuario:tipo}); %>
-  <div class="card mx-auto my-auto background perfil">
-    <div class="card-body d-grid gap-4" id="cardB">
-      <h1 class="card-title text-center">Perfil</h1>
-      <form class="d-grid gap-4 form" id="formPerfil">
+<body id="body" class="d-flex flex-column min-vh-100" style="background-image: url('../Images/ambitious-creative-co-rick-barrett-g_bglWB48JA-unsplash.jpg');/* height: 100%; */background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-position-y: center;background-position-x: center;"></body>
+  <%- include('Navegacion.ejs', {ventana:"OTRO", tipoUsuario:"Administrador", notificacion}); %>
+  <div class="card mx-auto my-auto background">
+    <div class="d-grid gap-4 esconde" id="Registrarse">
+      <h2 class="text-center">Registrase</h2>
+      <form class="d-grid gap-4 form" id="formRegistrarse">
         <div class="d-grid col-11 mx-auto gap-2">
           <div class="row">
             <div class="d-grid col-6">
-              <label for="Nombre" class="form-label">Nombre de empresa</label>
-              <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de empresa" value="<%= usuario.getNombre()%>">
+              <label for="Nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre">
             </div>
             <div class="d-grid col-6">
               <label for="Email" class="form-label">E-mail</label>
-              <input type="email" class="form-control" id="EmailR" name="Email" aria-describedby="Email" value="<%= usuario.getEmail()%>" disabled>
+              <input type="email" class="form-control" id="Email" name="Email" aria-describedby="Email">
             </div>
           </div>
           <div class="row">
             <div class="d-grid col-6">
               <label for="Telefono" class="form-label">Teléfono</label>
-              <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono" value="<%= usuario.getTelefono()%>">
+              <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono">
             </div>
           </div>
-        </div>
-        <div class="d-grid col-11 mx-auto gap-2">
-          <div class="row justify-content-end">
-            <div class="d-grid col-2">
-              <button type="submit" form="formPerfil" class="btn btn-primary">Modificar</button>
-            </div>
-          </div>
-        </div>
-      </form>
-      <h1 class="card-title text-center">Contraseña</h1>
-      <form class="d-grid gap-3 needs-validation" novalidate id="formContrasenna" >
-        <div class="d-grid col-11 mx-auto gap-2">
           <div class="row">
             <div class="d-grid col-6">
               <label for="Contrasenia" class="form-label">Contraseña</label>
@@ -44,9 +32,14 @@
               <input type="password" class="form-control" id="CContrasenia" name="CContrasenia" aria-describedby="Confirmar contraseña">
             </div>
           </div>
+        </div>
+        <div class="d-grid col-11 mx-auto gap-2">
           <div class="row justify-content-end">
             <div class="d-grid col-2">
-              <button type="submit" form="formContrasenna" class="btn btn-primary">Modificar</button>
+              <button type="button" class="btn btn-secondary irInicioSesion">Volver</button>
+            </div>
+            <div class="d-grid col-2">
+              <button type="submit" form="formRegistrarse" class="btn btn-primary enviaRegistrase">Enviar</button>
             </div>
           </div>
         </div>
@@ -58,7 +51,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="../Utilidades.js"></script>
   <script src="../Js/Mensaje.js"></script>
-  <script src="../Usuario.js"></script>
-  <script src="../Js/Perfil.js"></script>
+  <script src="../NuevoAdministrador.js"></script>
+  <script src="../Js/NuevoAdministrador.js"></script>
+  <script src="../Js/Navegacion.js"></script>
 </body>
 </html>

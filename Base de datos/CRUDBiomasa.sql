@@ -10,7 +10,7 @@ CREATE PROC [dbo].[CreateBiomasa]
     @IdUsuario INT,
 	@IdUnidad INT,
 	@Nombre VARCHAR(32),
-	@Descripción VARCHAR(256),
+	@Descripcion VARCHAR(256),
 	@Precio MONEY,
 	@Cantidad INT
 AS
@@ -27,10 +27,11 @@ SET NOCOUNT ON
 		SELECT @IdUsuario,
 				@IdUnidad,
 				@Nombre,
-				@Descripción,
+				@Descripcion,
 				@Precio,
 				@Cantidad,
-				1
+				1;
+		SELECT @@Identity Id;
 	END TRY
 
 	BEGIN CATCH
@@ -71,8 +72,9 @@ END
 GO
 CREATE PROC [dbo].[UpdateBiomasa] 
     @Id INT,
+	@IdUnidad INT,
 	@Nombre VARCHAR(32),
-	@Descripción VARCHAR(256),
+	@Descripcion VARCHAR(256),
 	@Precio MONEY,
 	@Cantidad INT
 AS
@@ -80,8 +82,9 @@ BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
 		UPDATE [dbo].[Biomasa]
-		SET [Nombre] = @Nombre,
-			[Descripcion] = @Descripción,
+		SET [IdUnidad] = @IdUnidad,
+			[Nombre] = @Nombre,
+			[Descripcion] = @Descripcion,
 			[Precio] = @Precio,
 			[Cantidad] = @Cantidad
 		WHERE [Id] = @Id

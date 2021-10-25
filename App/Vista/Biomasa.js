@@ -1,7 +1,7 @@
 class Biomasa{
 
   async agregar(info, listaEtiquetas){
-    info.append("etiquetas", JSON.stringify(listaEtiquetas));
+    info.append("Etiquetas", JSON.stringify(listaEtiquetas));
     let i = Utilidades.convertirAJSON(info);
     return await Utilidades.ajaxCall('/agregarBiomasa', 'POST', i);
   }
@@ -20,9 +20,9 @@ class Biomasa{
     return await Utilidades.ajaxCall('/mostrarBiomasa'+s, 'GET', {});
   }
 
-  async eliminar(email){
-    var d = JSON.stringify({email});
-    return await Utilidades.ajaxCall('/eliminarBiomasa', 'POST', d, "Se eliminó la biomasa");
+  async eliminar(info){
+    let i = Utilidades.convertirAJSON(info);
+    return await Utilidades.ajaxCall('/eliminarBiomasa', 'POST', i, "Se eliminó la biomasa");
   }
 
 }

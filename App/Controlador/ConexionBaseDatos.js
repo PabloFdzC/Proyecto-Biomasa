@@ -2,10 +2,14 @@ const mssql = require('mssql');
 
 class ConexionBaseDatos{
   #parametrosConexion = {
-    user: 'admin',
-    password: '1234',
+    user: 'sa',
+    password: 'contrasena',
     server: 'localhost', 
-    database: 'Biomasa'
+    database: 'BiomasaAP',
+    options: {
+      encrypt: true,
+      trustServerCertificate: true
+    }
   };
 
   #conexion = null;
@@ -20,9 +24,11 @@ class ConexionBaseDatos{
     });
   }
 
-  async query(procedimiento, params = {}){
+  async query(procedimiento, params){
     var con = this.#conexion;
     var gt = this.getTipo;
+    var csn = this.cambiaStringNull;
+    console.log(params);
     return new Promise(function(resolve, reject){
       var pedido = new mssql.Request();
       var malo = false;
@@ -33,7 +39,8 @@ class ConexionBaseDatos{
           malo = true;
           break;
         } else {
-          pedido.input(p, tipo, params[p]);
+          let valor = csn(params[p]);
+          pedido.input(p, tipo, valor);
         }
       }
       if(!malo){
@@ -48,20 +55,30 @@ class ConexionBaseDatos{
     });
   }
 
+  cambiaStringNull(parametro){
+    let tipo = typeof parametro;
+    if(tipo == "string"){
+      if(parametro.trim() == ""){
+        return undefined;
+      }
+    }
+    return parametro;
+  }
+
   getTipo(parametro, nombre){
     let tipo = typeof parametro;
     switch(tipo){
       case "string":
-        if(nombre === "Descripcion"){
+        if(nombre == "Descripcion"){
           return mssql.VarChar(256);
         } else {
           return mssql.VarChar(32);
         }
       case "number":
-        if(Number.isInteger(parametro)){
-          return mssql.Int;
-        } else {
+        if(nombre == "Precio"){
           return mssql.Money;
+        } else {
+          return mssql.Int;
         }
       default:
         return null;

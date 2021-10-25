@@ -48,7 +48,7 @@ AS
 BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
-		SELECT TU.[Nombre], U.Nombre, U.Telefono, U.Email, U.Contrasenia, U.Activo
+		SELECT TU.[Nombre] TipoUsuario, U.Nombre, U.Telefono, U.Email, U.Activo
 		FROM [dbo].[Usuario] U
 		INNER JOIN [dbo].[TipoUsuario] TU
 		ON U.IdTipoUsuario = TU.Id
@@ -78,9 +78,9 @@ BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
 		UPDATE [dbo].[Usuario]
-		SET [Nombre] = @Nombre,
-			[Telefono] = @Telefono,
-			[Contrasenia] = @Contrasenia
+		SET [Nombre] = ISNULL(@Nombre, [Nombre]),
+			[Telefono] = ISNULL(@Telefono, [Telefono]),
+			[Contrasenia] = ISNULL(@Contrasenia, [Contrasenia])
 		WHERE [Id] = @Id
 				
 	END TRY

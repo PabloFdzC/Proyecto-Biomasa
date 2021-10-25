@@ -21,22 +21,13 @@
   height: auto;
 }
 
-.servicio{
+.etiqueta{
   color: #FAD586;
   background-color: #40978D;
   border-radius: 20px;
   width: auto;
 }
 
-.diasCalendarioSala{
-  width: auto;
-}
-
-.listaDiasCalendarioSala{
-  overflow-y: scroll;
-  max-height: 200px;
-}
-
-.fechaCalendario{
-  display: block;
+.tituloBotones{
+  margin: 0 0.2rem 0 0;
 }

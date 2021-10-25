@@ -1,0 +1,64 @@
+
+<%- include('Header.ejs'); %>
+<body id="body" class="d-flex flex-column min-vh-100"></body>
+  <%- include('Navegacion.ejs', {ventana, tipoUsuario:"Administrador"}); %>
+  <div class="card mx-auto background cardLista mb-2">
+    <div class="card-body" id="cardB">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <h1 class="card-title tituloLista"><%= tituloLista%></h1>
+        </div>
+        <div class="d-grid col-2">
+          <button type="button" class="btn btn-primary activaModal" value="CREAR" data-bs-toggle="modal" data-bs-target="#modalSimple">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="elementos">
+
+  </div>
+  <div class="modal fade" id="modalSimple" tabindex="-1" aria-labelledby="agregarModificar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content background">
+        <div class="modal-body d-grid gap-4">
+          <h3 class="text-center" id="agregarModificar">Agregar <%= tituloAM %></h3>
+          <form class="d-grid col-9 mx-auto gap-2 needs-validation" novalidate id="formSimple">
+            <div>
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="Nombre De <%= tituloAM %>" required>
+              <div class="invalid-feedback">
+                El campo no puede estar vacío.
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-3">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-primary" form="formSimple">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('Mensaje.ejs'); %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../Utilidades.js"></script>
+  <script src="../Js/Mensaje.js"></script>
+  <script>const nombreV = "<%= tituloAM %>";</script>
+  <% if(ventana === "ETIQUETAS"){ %>
+  <script src="../Etiqueta.js"></script>
+  <script>const ventana = new Etiqueta();</script>
+  <% } else if(ventana === "UNIDADES") { %>
+  <script src="../Unidad.js"></script>
+  <script>const ventana = new Unidad();</script>
+  <% } else if(ventana === "TIPOUSUARIO") { %>
+  <script src="../TipoUsuario.js"></script>
+  <script>const ventana = new TipoUsuario();</script>
+  <% } %>
+  <script src="../Js/VentanaCardsSimple.js"></script>
+</body>
+</html>

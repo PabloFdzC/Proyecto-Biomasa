@@ -18,6 +18,21 @@ OperacionesUsuario.post('/agregarUsuario', async function(req, res){
   }
 });
 
+OperacionesUsuario.post('/agregarAdministrador', async function(req, res){
+  try{
+    req.body.TipoUsuario = 1;
+    var r = await ctrlUs.agregar(req.body);
+    res.send("Ok");
+  }catch(err){
+    console.log(err);
+    res.status(400);
+    if(err.code == 'ER_DUP_ENTRY')
+      res.send("No se pudo crear el usuario");
+    else
+      res.send("Algo salió mal");
+  }
+});
+
 OperacionesUsuario.post('/modificarUsuario', async function(req, res){
   try{
     req.body.Id = req.session.Id;
@@ -29,18 +44,6 @@ OperacionesUsuario.post('/modificarUsuario', async function(req, res){
     res.send("Algo salió mal");
   }
 });
-
-OperacionesUsuario.post('/modificarUsuarioContrasenna', async function(req, res){
-    try{
-      req.body.Id = req.session.Id;
-      var r = await ctrlUs.modificarContrasenna(req.body);
-      res.send(r);
-    }catch(err){
-      console.log(err);
-      res.status(400);
-      res.send("Algo salió mal");
-    }
-  });
 
 OperacionesUsuario.post('/eliminarUsuario', async function(req, res){
   try{
@@ -55,8 +58,8 @@ OperacionesUsuario.post('/eliminarUsuario', async function(req, res){
 
 OperacionesUsuario.get('/mostrarUsuario', async function(req, res){
   try{
-      var resultado = await ctrlUs.mostrar();
-      res.render('Usuarios.ejs', {resultado});
+    var resultado = await ctrlUs.mostrar();
+    res.render('Usuarios.ejs', {resultado});
   }catch(err){
     console.log(err);
     res.status(400);
@@ -66,10 +69,10 @@ OperacionesUsuario.get('/mostrarUsuario', async function(req, res){
 
 OperacionesUsuario.post('/ingresar', async function(req, res){
   try{
-    var usuario = await ctrlUs.ingresar(req.body);
+    var usuario = await ctrlUs.iniciarSesion(req.body);
     req.session.Id = usuario.Id;
     req.session.TipoUsuario = usuario.TipoUsuario;
-    res.send(usuario);
+    res.send("Ok");
   }catch(err){
     console.log(err);
     res.status(400);

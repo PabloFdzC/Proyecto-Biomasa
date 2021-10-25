@@ -29,5 +29,7 @@ app.use('/', sngOp.getOperacionesBiomasa());
 app.use('/', sngOp.getOperacionesEtiqueta());
 app.use('/', sngOp.getOperacionesUsuario());
 app.use('/', sngOp.getOperacionesNavegacion());
+app.use('/', sngOp.getOperacionesTipoUsuario());
+app.use('/', sngOp.getOperacionesUnidad());
 
 app.listen(app.get('port'));

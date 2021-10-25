@@ -1,0 +1,32 @@
+<% if(lista.length == 0) { %>
+  <div class="card mx-auto background cardLista mt-2">
+    <div class="card-body" id="cardB">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="card-title tituloElementoLista text-center">Nada para mostrar</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+<% } %>
+<% for(let e of lista){ %>
+  <div class="card mx-auto background cardLista mt-2">
+    <div class="card-body" id="cardB">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <h2 class="card-title tituloElementoLista2"><%= e.getNombre() %></h2>
+        </div>
+        <div class="col-4">
+          <div class="row">
+            <div class="d-grid col-6">
+              <button type="button" class="btn btn-secondary elimina" value="<%= e.getId() %>">Eliminar</button>
+            </div>
+            <div class="d-grid col-6">
+              <button type="button" class="btn btn-primary activaModal" value="<%= e.getId() %>" data-bs-toggle="modal" data-bs-target="#modalSimple">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% } %>

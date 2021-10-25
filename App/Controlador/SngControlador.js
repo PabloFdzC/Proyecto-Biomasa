@@ -1,12 +1,16 @@
 const ControladorBiomasa = require('./ControladorBiomasa.js');
 const ControladorEtiqueta = require('./ControladorEtiqueta.js');
 const ControladorUsuario = require('./ControladorUsuario.js');
+const ControladorTipoUsuario = require('./ControladorTipoUsuario.js');
+const ControladorUnidad = require('./ControladorUnidad.js');
 
 class SngControlador{
   static #instance = null;
   #controladorBiomasa = null;
   #controladorEtiqueta = null;
   #controladorUsuario = null;
+  #controladorTipoUsuario = null;
+  #controladorUnidad = null;
 
   constructor(){}
   
@@ -19,7 +23,11 @@ class SngControlador{
 
   getControladorBiomasa(){
     if(this.#controladorBiomasa == null){
-      this.#controladorBiomasa = new ControladorBiomasa();
+      this.#controladorBiomasa = new ControladorBiomasa(
+        this.getControladorEtiqueta(),
+        this.getControladorUsuario(),
+        this.getControladorUnidad()
+        );
     }
     return this.#controladorBiomasa;
   }
@@ -33,9 +41,25 @@ class SngControlador{
 
   getControladorUsuario(){
     if(this.#controladorUsuario == null){
-      this.#controladorUsuario = new ControladorUsuario();
+      this.#controladorUsuario = new ControladorUsuario(
+        this.getControladorTipoUsuario()
+      );
     }
     return this.#controladorUsuario;
+  }
+
+  getControladorTipoUsuario(){
+    if(this.#controladorTipoUsuario == null){
+      this.#controladorTipoUsuario = new ControladorTipoUsuario();
+    }
+    return this.#controladorTipoUsuario;
+  }
+
+  getControladorUnidad(){
+    if(this.#controladorUnidad == null){
+      this.#controladorUnidad = new ControladorUnidad();
+    }
+    return this.#controladorUnidad;
   }
 
 }

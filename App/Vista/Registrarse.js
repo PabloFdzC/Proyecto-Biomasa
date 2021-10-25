@@ -1,8 +1,8 @@
 class Registrarse{
 
-  async registrarCliente(info){
+  async registrar(info){
     let i = Utilidades.convertirAJSON(info);
-    return await Utilidades.ajaxCall('/crearCliente', 'POST', i, "Cuenta creada con éxito");
+    return await Utilidades.ajaxCall('/agregarUsuario', 'POST', i, "Cuenta creada con éxito");
   }
 
 }

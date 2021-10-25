@@ -1,6 +1,6 @@
 <%- include('Header.ejs'); %>
 <body id="body" class="d-flex flex-column min-vh-100">
-<%- include('Navegacion.ejs', {ventana:"MIBIOMASA", tipoUsuario: "VENDEDOR"}); %>
+<%- include('Navegacion.ejs', {ventana:"MIBIOMASA", tipoUsuario: "Vendedor"}); %>
   <div class="card mx-auto background cardLista mb-2">
     <div class="card-body" id="cardB">
       <div class="row justify-content-between">
@@ -42,9 +42,7 @@
                 </div>
                 <div class="d-grid col-6">
                   <label for="Unidad" class="form-label">Unidad</label>
-                  <select class="form-control" id="Unidad" name="Unidad" aria-describedby="Unidad" required>
-                    <option value="Kilogramos">Kilogramos</option>
-                    <option value="Litros">Litros</option>
+                  <select class="form-control" id="Unidad" aria-describedby="Unidad" required>
                   </select>
                   <div class="invalid-feedback">
                     El campo no puede estar vacío.
@@ -54,7 +52,7 @@
               <div class="row">
                 <div class="d-grid col-6">
                   <label for="Precio" class="form-label">Precio por unidad</label>
-                  <input type="text" class="form-control" id="Precio" name="Precio" aria-describedby="Precio por unidad" required>
+                  <input type="number" class="form-control" id="Precio" name="Precio" aria-describedby="Precio por unidad" required>
                   <div class="invalid-feedback">
                     El campo no puede estar vacío.
                   </div>
@@ -74,7 +72,7 @@
                   <label for="annadirEtiqueta" class="form-label">Añadir etiqueta</label>
                   <div class="row">
                     <div class="d-grid col-10">
-                      <select name="annadirEtiqueta" id="annadirEtiqueta" aria-describedby="Añadir Etiqueta" class="form-control">
+                      <select id="annadirEtiqueta" aria-describedby="Añadir Etiqueta" class="form-control">
                         <option value="" disabled selected hidden>Añadir etiqueta</option>
                       </select>
                     </div>
@@ -112,6 +110,7 @@
   <script src="../Js/Mensaje.js"></script>
   <script src="../Biomasa.js"></script>
   <script src="../Etiqueta.js"></script>
+  <script src="../Unidad.js"></script>
   <script src="../Js/MiBiomasa.js"></script>
 </body>
 </html>

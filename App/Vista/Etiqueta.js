@@ -2,20 +2,21 @@ class Etiqueta{
   
   async agregar(info){
     let i = Utilidades.convertirAJSON(info);
-    return await Utilidades.ajaxCall('/agregarEtiqueta', 'POST', i, "Etiqueta creado con éxito");
+    return await Utilidades.ajaxCall('/agregarEtiqueta', 'POST', i, "Etiqueta creada con éxito");
   }
 
   async modificar(info){
     let i = Utilidades.convertirAJSON(info);
-    return await Utilidades.ajaxCall('/modificarEtiqueta', 'POST', i, "Etiqueta modificado con éxito");
+    return await Utilidades.ajaxCall('/modificarEtiqueta', 'POST', i, "Etiqueta modificada con éxito");
   }
 
-  async eliminar(nombreEtiqueta){
-    var d = JSON.stringify({nombreEtiqueta});
-    return await Utilidades.ajaxCall('/eliminarEtiqueta', 'POST', d, "Etiqueta eliminado con éxito");
+  async eliminar(info){
+    let i = Utilidades.convertirAJSON(info);
+    return await Utilidades.ajaxCall('/eliminarEtiqueta', 'POST', i, "Etiqueta eliminada con éxito");
   }
 
-  async mostrar(esLista){
-    return await Utilidades.ajaxCall('/mostrarEtiquetas?esLista='+esLista, 'GET', {});
+  async mostrar(datos){
+    var s = Utilidades.objetoAParametrosGet(datos);
+    return await Utilidades.ajaxCall('/mostrarEtiqueta'+s, 'GET', {});
   }
 }

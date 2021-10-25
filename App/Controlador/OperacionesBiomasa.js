@@ -7,6 +7,7 @@ const ctrlBiom = ctrlSng.getControladorBiomasa();
 OperacionesBiomasa.post('/agregarBiomasa', async function(req, res){
   try{
     req.body.Etiquetas = JSON.parse(req.body.Etiquetas);
+    req.body.IdUsuario = req.session.Id;
     var r = await ctrlBiom.agregar(req.body);
     res.send({r});
   }catch(err){
@@ -21,7 +22,8 @@ OperacionesBiomasa.post('/agregarBiomasa', async function(req, res){
 
 OperacionesBiomasa.post('/modificarBiomasa', async function(req, res){
   try{
-    req.body.email = req.session.email;
+    req.body.Etiquetas = JSON.parse(req.body.Etiquetas);
+    req.body.EtiquetasE = JSON.parse(req.body.EtiquetasE);
     var r = await ctrlBiom.modificar(req.body);
     res.send(r);
   }catch(err){
@@ -33,7 +35,6 @@ OperacionesBiomasa.post('/modificarBiomasa', async function(req, res){
 
 OperacionesBiomasa.post('/eliminarBiomasa', async function(req, res){
   try{
-    req.body.email = req.session.email;
     var r = await ctrlBiom.eliminar(req.body);
     res.send(r);
   }catch(err){
@@ -45,11 +46,16 @@ OperacionesBiomasa.post('/eliminarBiomasa', async function(req, res){
 
 OperacionesBiomasa.get('/mostrarBiomasa', async function(req, res){
     try{
-      var lista = await ctrlBiom.mostrar(req.query);
+      var lista;
+      if(req.query.MiBiomasa === "true"){
+        lista = await ctrlBiom.mostrar({IdUsuario: req.session.Id});
+      } else {
+        lista = await ctrlBiom.mostrar(req.query);
+      }
       if(req.query.Id){
         res.send(lista[0].convertirAVista());
       } else {
-        res.render('BiomasaCards.ejs', {lista, miBiomasa:req.query.MiBiomasa === "true"});
+        res.render('BiomasaCards.ejs', {lista, MiBiomasa:req.query.MiBiomasa === "true"});
       }
     }catch(err){
       console.log(err);

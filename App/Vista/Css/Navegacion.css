@@ -1,26 +1,35 @@
-.navbar-dark .navbar-nav .nav-link{
+.navbar-light .navbar-nav .nav-link{
   color:#184D47;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover{
+.navbar-light .navbar-nav .nav-link:hover{
   color:#40978D;
 }
 
-.navbar-dark .navbar-nav .nav-link.active{
+.navbar-light .navbar-nav .nav-link.active{
+  color: #40978D;
+}
+
+.navbar-light .nav-link .dropdown-toggle{
   color: #184D47;
 }
 
-.navbar-dark .nav-link .dropdown-toggle{
-  color: #184D47;
-}
-
-.dropdown-menu-dark{
+.dropdown-menu-light{
   color:#184D47;
   background-color: #FAD586;
   border-color: #FAD586;
 }
 
-.navbar-dark .navbar-toggler {
+.dropdown-item{
+  color:#184D47;
+}
+
+.dropdown-item:hover{
+  background-color: #184D47;
+  color:#FAD586;
+}
+
+.navbar-light .navbar-toggler {
     color: #184D47;
     border-color: #184D47;
 }

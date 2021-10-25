@@ -1,6 +1,8 @@
 $('body').ready(function(){
   var biomasa = new Biomasa();
   var etiqueta = new Etiqueta();
+  var unidad = new Unidad();
+  var actual;
   var esModificar = false;
   var listaEtiquetas = [];
   var listaEtiquetasA = [];
@@ -12,6 +14,17 @@ $('body').ready(function(){
       var res = await etiqueta.mostrar({EsLista:true});
       if(res){
         $('#annadirEtiqueta').append(res);
+      }
+    }catch(err){
+      muestraMensaje("Fallo", err.responseText);
+    }
+  };
+
+  const cargarUnidades = async function(){
+    try{
+      var res = await unidad.mostrar({EsLista:true});
+      if(res){
+        $('#Unidad').append(res);
       }
     }catch(err){
       muestraMensaje("Fallo", err.responseText);
@@ -30,60 +43,67 @@ $('body').ready(function(){
     }
   };
 
-  const insertaEtiquetaHtml = function(val){
-    if(val != "" && !listaEtiquetasA.includes(val) && !listaEtiquetas.includes(val)){
-      if(esModificar){
-        listaEtiquetasA.push(val);
-      }else{
-        listaEtiquetas.push(val);
+  const insertaEtiquetaHtml = function(val, text){
+    if(val != ""){
+      val = parseInt(val);
+      if(!listaEtiquetasA.includes(val) && !listaEtiquetas.includes(val)){
+        if(esModificar){
+          listaEtiquetasA.push(val);
+        }else{
+          listaEtiquetas.push(val);
+        }
+        $('#etiquetasEscogidos').append(`
+        <div class="etiqueta ps-3 pe-3 pt-2 pb-2 text-center m-1" title="`+val+`" id="`+val+`">
+          `+text+`
+        </div>`);
       }
-      $('#etiquetasEscogidos').append(`
-      <div class="etiqueta ps-3 pe-3 pt-2 pb-2 text-center m-1" title="`+val+`" id="`+val+`">
-        `+val+`
-      </div>`);
     }
   };
 
   const limpiarModal = function(){
-    $('#formClase').removeClass('was-validated');
-    $('#nombre').val("");
-    $('#cantidad').val("");
-    $('#precio').val("");
-    $('#descripcion').val("");
-    $('#annadirEtiqueta').val("");
+    $('#formBiomasa').removeClass('was-validated');
+    $('#Nombre').val("");
+    $('#Cantidad').val("");
+    $('#Precio').val("");
+    $('#Descripcion').val("");
     $('#etiquetasEscogidos').empty();
     listaEtiquetas = [];
   };
 
   $('body').on('click', '.activaModal', async function(event){
     listaEtiquetas = [];
-    var val = $(this).attr('value');
-    if(val == "AGREGAR"){
+    actual = $(this).attr('value');
+    if(actual == "AGREGAR"){
       esModificar = false;
       $('#agregarModificar').empty();
       $('#agregarModificar').append("Agregar biomasa");
     } else {
       $('#agregarModificar').empty();
       $('#agregarModificar').append("Modificar biomasa");
-      let biom = await biomasa.mostrar({Id:val});
-      if(biom){
-        $('#nombre').val(biom.nombre);
-        $('#cantidad').val(biom.cantidad);
-        $('#precio').val(biom.precio);
-        $('#descripcion').val(biom.descripcion);
-        for(let s of biom.etiquetas){
-          insertaEtiquetaHtml(s);
+      try{
+        let biom = await biomasa.mostrar({Id:parseInt(actual)});
+        if(biom){
+          $('#Nombre').val(biom.nombre);
+          $('#Cantidad').val(biom.cantidad);
+          $('#Precio').val(biom.precio);
+          $('#Descripcion').val(biom.descripcion);
+          for(let e of biom.etiquetas){
+            insertaEtiquetaHtml(e.id, e.nombre);
+          }
+          esModificar = true;
         }
-        esModificar = true;
+      }catch(err){
+        console.log(err);
       }
-      
     }
   });
 
   $('body').on('click', '.eliminarBiomasa', async function(event){
     let val = $(this).attr('value');
     try{
-      let r = await biomasa.eliminar(val);
+      let info = new FormData();
+      info.append('Id', parseInt(val));
+      let r = await biomasa.eliminar(info);
       if(r){
         const card = $(this).parent().parent().parent().parent().parent().parent();
         card.remove();
@@ -108,9 +128,12 @@ $('body').ready(function(){
       let info = new FormData(form);
       var r;
       try{
-        if(esModificar)
+        let IdUnidad = $('#Unidad').children("option:selected").val();
+        info.append('IdUnidad', IdUnidad);
+        if(esModificar){
+          info.append('Id', actual);
           r = await biomasa.modificar(info, listaEtiquetasA, listaEtiquetasE);
-        else{
+        }else{
           r = await biomasa.agregar(info, listaEtiquetas);
         }
         cargarBiomasa();
@@ -123,7 +146,7 @@ $('body').ready(function(){
   });
 
   $('#formBiomasa').on('click', '.etiqueta', function(){
-    let val = $(this).attr('id');
+    let val = parseInt($(this).attr('id'));
     if(esModificar){
       if(listaEtiquetasE.length+1 === listaEtiquetas.length && listaEtiquetasA.length === 0){
         muestraMensaje('Fallo', 'Debe existir al menos 1 etiqueta');
@@ -141,10 +164,12 @@ $('body').ready(function(){
   });
 
   $('#annadeEtiqueta').on('click', function(event){
-    let val = $('#annadirEtiqueta').children("option:selected").val();
-    insertaEtiquetaHtml(val);
+    var val = $('#annadirEtiqueta').children("option:selected").val();
+    var text = $('#annadirEtiqueta').children("option:selected").text();
+    insertaEtiquetaHtml(val, text);
   });
-
+  
   cargarEtiquetas();
+  cargarUnidades();
   cargarBiomasa();
 });

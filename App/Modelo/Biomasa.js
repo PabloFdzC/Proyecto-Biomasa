@@ -87,7 +87,7 @@ class Biomasa{
     var a = [];
     if(Array.isArray(this.#etiquetas)){
       for(let e of this.#etiquetas){
-        a.push(e.getNombre());
+        a.push(e.convertirAVista());
       }
     }
     obj.etiquetas = a;

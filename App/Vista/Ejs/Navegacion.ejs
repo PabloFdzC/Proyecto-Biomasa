@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark background mb-3" id="nav">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light background mb-3" id="nav">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +9,7 @@
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
       <li class="nav-item">
       </li>
-      <% if(tipoUsuario === "VENDEDOR"){ %>
+      <% if(tipoUsuario === "Vendedor"){ %>
       <li class="nav-item">
         <% if (ventana === "MIBIOMASA") { %>
           <a class="nav-link active" href="/MiBiomasa">Mi biomasa</a>
@@ -17,12 +17,41 @@
           <a class="nav-link" href="/MiBiomasa">Mi biomasa</a>
         <% } %>
       </li>
-      <% } else if(tipoUsuario === "COMPRADOR"){ %>
+      <% } else if(tipoUsuario === "Comprador"){ %>
       <li class="nav-item">
         <% if (ventana === "COMPRARBIOMASA") { %>
           <a class="nav-link active" href="/ComprarBiomasa">Comprar biomasa</a>
         <% } else { %>
           <a class="nav-link" href="/ComprarBiomasa">Comprar biomasa</a>
+        <% } %>
+      </li>
+      <% } else if(tipoUsuario === "Administrador"){ %>
+      <li class="nav-item">
+        <% if (ventana === "USUARIOS") { %>
+          <a class="nav-link active" href="/Usuarios">Usuarios</a>
+        <% } else { %>
+          <a class="nav-link" href="/Usuarios">Usuarios</a>
+        <% } %>
+      </li>
+      <li class="nav-item">
+        <% if (ventana === "ETIQUETAS") { %>
+          <a class="nav-link active" href="/Etiquetas">Etiquetas</a>
+        <% } else { %>
+          <a class="nav-link" href="/Etiquetas">Etiquetas</a>
+        <% } %>
+      </li>
+      <li class="nav-item">
+        <% if (ventana === "UNIDADES") { %>
+          <a class="nav-link active" href="/Unidades">Unidades</a>
+        <% } else { %>
+          <a class="nav-link" href="/Unidades">Unidades</a>
+        <% } %>
+      </li>
+      <li class="nav-item">
+        <% if (ventana === "TIPOUSUARIO") { %>
+          <a class="nav-link active" href="/TipoUsuario">Tipos de usuario</a>
+        <% } else { %>
+          <a class="nav-link" href="/TipoUsuario">Tipos de usuario</a>
         <% } %>
       </li>
       <% } %>
@@ -34,9 +63,18 @@
           <% } else { %>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <% } %>
-          Cuenta
+          <% if(tipoUsuario === "Administrador"){ %>
+            Administrador
+          <% } else if(tipoUsuario === "Vendedor"){ %>
+            Vendedor
+          <% } else if(tipoUsuario === "Comprador"){ %>
+            Comprador
+          <% } %>
           </a>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
+            <% if(tipoUsuario === "Administrador"){ %>
+            <li><a class="dropdown-item" href="/NuevoAdministrador">Nuevo administrador</a></li>
+            <% } %>
             <li><a class="dropdown-item" href="/Perfil">Perfil</a></li>
             <li><a class="dropdown-item" href="/IniciarSesion">Cerrar sesión</a></li>
           </ul>

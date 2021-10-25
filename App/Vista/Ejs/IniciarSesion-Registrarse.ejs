@@ -4,15 +4,21 @@
       <div class="card-body" id="cardB">
         <div class="d-grid gap-4" id="IniciarSesion">
           <h2 class="text-center">Iniciar sesión</h2>
-          <form class="d-grid gap-4 form" id="formIniciarSesion">
+          <form class="d-grid gap-4 form needs-validation" novalidate id="formIniciarSesion">
             <div class="d-grid col-9 mx-auto gap-2">
               <div>
                 <label for="Email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="Email" name="Email" aria-describedby="Email">
+                <input type="email" class="form-control" id="Email" name="Email" aria-describedby="Email" required>
+                <div class="invalid-feedback">
+                  El campo no puede estar vacío.
+                </div>
               </div>
               <div>
                 <label for="Contrasenia" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="Contrasenia" name="Contrasenia">
+                <input type="password" class="form-control" id="Contrasenia" name="Contrasenia" required>
+                <div class="invalid-feedback">
+                  El campo no puede estar vacío.
+                </div>
               </div>
             </div>
             <div class="d-grid col-5 mx-auto text-center gap-2">
@@ -23,39 +29,54 @@
         </div>
         <div class="d-grid gap-4 esconde" id="Registrarse">
           <h2 class="text-center">Registrase</h2>
-          <form class="d-grid gap-4 form" id="formRegistrarse">
+          <form class="d-grid gap-4 form needs-validation" novalidate id="formRegistrarse">
             <div class="d-grid col-11 mx-auto gap-2">
               <div class="row">
                 <div class="d-grid col-6">
                   <label for="Nombre" class="form-label">Nombre de empresa</label>
-                  <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de empresa">
+                  <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de empresa" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
                 </div>
                 <div class="d-grid col-6">
                   <label for="Email" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" id="EmailR" name="Email" aria-describedby="Email">
+                  <input type="email" class="form-control" id="EmailR" name="Email" aria-describedby="Email"required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="d-grid col-6">
                   <label for="Telefono" class="form-label">Teléfono</label>
-                  <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono">
+                  <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
                 </div>
                 <div class="d-grid col-6">
                   <label for="TipoUsuario" class="form-label">Tipo de usuario</label>
-                  <select class="form-control" id="TipoUsuario" name="TipoUsuario" aria-describedby="Tipo de usuario">
-                    <option value="Comprador">Comprador</option>
-                    <option value="Vendedor">Vendedor</option>
-                  </select>
+                  <select class="form-control" id="TipoUsuario" name="IdTipoUsuario" aria-describedby="Tipo de usuario" required></select>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="d-grid col-6">
                   <label for="Contrasenia" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="ContraseniaR" name="Contrasenia" aria-describedby="Contraseña">
+                  <input type="password" class="form-control" id="ContraseniaR" name="Contrasenia" aria-describedby="Contraseña" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
                 </div>
                 <div class="d-grid col-6">
                   <label for="CContrasenia" class="form-label">Confirmar contraseña</label>
-                  <input type="password" class="form-control" id="CContrasenia" name="CContrasenia" aria-describedby="Confirmar contraseña">
+                  <input type="password" class="form-control" id="CContrasenia" name="CContrasenia" aria-describedby="Confirmar contraseña" required>
+                  <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,6 +119,7 @@
     <script src="../Js/Mensaje.js"></script>
     <script src="../IniciarSesion.js"></script>
     <script src="../Registrarse.js"></script>
+    <script src="../TipoUsuario.js"></script>
     <script src="../Js/InicioSesion-Registrarse.js"></script>
   </body>
 </html>

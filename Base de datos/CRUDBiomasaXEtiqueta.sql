@@ -81,13 +81,14 @@ BEGIN
 END 
 GO
 CREATE PROC [dbo].[DeleteBiomasaXEtiqueta] 
-    @Id INT
+    @IdBiomasa INT,
+	@IdEtiqueta INT
 AS
 BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
 		DELETE FROM [dbo].[BiomasaXEtiqueta]
-		WHERE [Id] = @Id
+		WHERE [IdBiomasa] = @IdBiomasa AND [IdEtiqueta] = @IdEtiqueta
 				
 	END TRY
 

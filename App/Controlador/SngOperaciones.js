@@ -1,6 +1,8 @@
 OperacionesBiomasa = require('./OperacionesBiomasa.js');
 OperacionesEtiqueta = require('./OperacionesEtiqueta.js');
 OperacionesUsuario = require('./OperacionesUsuario.js');
+OperacionesTipoUsuario = require('./OperacionesTipoUsuario.js');
+OperacionesUnidad = require('./OperacionesUnidad.js');
 OperacionesNavegacion = require('./OperacionesNavegacion.js');
 
 class SngOperaciones{
@@ -8,7 +10,9 @@ class SngOperaciones{
   #operacionesBiomasa = null;
   #operacionesEtiqueta = null;
   #operacionesUsuario = null;
+  #operacionesTipoUsuario = null;
   #operacionesNavegacion = null;
+  #operacionesUnidad = null;
 
   constructor(){}
   
@@ -38,6 +42,20 @@ class SngOperaciones{
       this.#operacionesUsuario = OperacionesUsuario;
     }
     return this.#operacionesUsuario;
+  }
+
+  getOperacionesTipoUsuario(){
+    if(this.#operacionesTipoUsuario == null){
+      this.#operacionesTipoUsuario = OperacionesTipoUsuario;
+    }
+    return this.#operacionesTipoUsuario;
+  }
+
+  getOperacionesUnidad(){
+    if(this.#operacionesUnidad == null){
+      this.#operacionesUnidad = OperacionesUnidad;
+    }
+    return this.#operacionesUnidad;
   }
 
   getOperacionesNavegacion(){

@@ -42,8 +42,24 @@ OperacionesEtiqueta.post('/eliminarEtiqueta', async function(req, res){
 
 OperacionesEtiqueta.get('/mostrarEtiqueta', async function(req, res){
     try{
-        var lista = await ctrlEtiq.mostrar(req.query);
-        res.render('EtiquetaLista.ejs', {lista});
+      var lista = await ctrlEtiq.mostrar(req.query);
+      if(req.query.EsLista === "true"){
+        res.render('ListaIdNombre.ejs', {lista});
+      } else {
+        res.render('CardsSimple.ejs', {lista}, function(err, html){
+          if(err){
+            console.log(err);
+            res.status(400);
+            res.send("Algo salió mal");      
+          } else {
+            var l = [];
+            for(let s of lista){
+              l.push(s.convertirAVista());
+            }
+            res.send({html, datos:l});
+          }
+        });
+      }
     }catch(err){
       console.log(err);
       res.status(400);

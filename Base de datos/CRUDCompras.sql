@@ -43,7 +43,7 @@ AS
 BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
-		SELECT B.Nombre,U.Nombre,C.[Cantidad],C.[Precio]
+		SELECT B.Nombre,U.Nombre Unidad,C.[Cantidad],C.[Precio]
 		FROM [dbo].[Compras] C
 		INNER JOIN [dbo].[Biomasa] B ON C.IdBiomasa = B.Id
 		INNER JOIN [dbo].[Unidad] U ON C.IdUsuario = U.Id
