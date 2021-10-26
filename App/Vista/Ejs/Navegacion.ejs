@@ -11,6 +11,13 @@
       </li>
       <% if(tipoUsuario === "Vendedor"){ %>
       <li class="nav-item">
+        <% if (ventana === "BIOMASAVENDIDA") { %>
+          <a class="nav-link active" href="/BiomasaVendida">Biomasa vendida</a>
+        <% } else { %>
+          <a class="nav-link" href="/BiomasaVendida">Biomasa vendida</a>
+        <% } %>
+      </li>
+      <li class="nav-item">
         <% if (ventana === "MIBIOMASA") { %>
           <a class="nav-link active" href="/MiBiomasa">Mi biomasa</a>
         <% } else { %>

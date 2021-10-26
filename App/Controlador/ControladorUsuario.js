@@ -21,10 +21,17 @@ class ControladorUsuario{
   // solo {Id: string que hay que convertir a número}. A parte de
   // eso es bastante parecido al que está en ControladorUsuario
   async mostrar(elem){
-    var r = await this.#conexionBaseDatos.query('ReadUsuario', elem);
+    var r;
+    if(elem.Id){
+      r = await this.#conexionBaseDatos.query('ReadUsuario', elem);
+    } else {
+      r = await this.#conexionBaseDatos.query('GetUsuarios', {});
+    }
     var datos = [];
     for(var e of r.recordset){
-      e.TipoUsuario = this.#ctrlTipoUsuario.mostrar({Id:e.IdTipoUsuario})[0];
+      if(elem.Id){
+        e.TipoUsuario = this.#ctrlTipoUsuario.mostrar({Id:e.IdTipoUsuario})[0];
+      }
       datos.push(this.convertirAObjeto(e));
     }
     return datos; 

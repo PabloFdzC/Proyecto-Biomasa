@@ -9,7 +9,7 @@
           <div class="row">
             <div class="d-grid col-6">
               <label for="Nombre" class="form-label">Nombre de empresa</label>
-              <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de empresa" value="<%= usuario.getNombre()%>">
+              <input type="text" class="form-control" id="Nombre" name="Nombre" aria-describedby="Nombre de empresa" value="<%= usuario.getNombre()%>" maxlength="32">
             </div>
             <div class="d-grid col-6">
               <label for="Email" class="form-label">E-mail</label>
@@ -19,7 +19,7 @@
           <div class="row">
             <div class="d-grid col-6">
               <label for="Telefono" class="form-label">Teléfono</label>
-              <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono" value="<%= usuario.getTelefono()%>">
+              <input type="text" class="form-control" id="Telefono" name="Telefono" aria-describedby="Teléfono" value="<%= usuario.getTelefono()%>" maxlength="16">
             </div>
           </div>
         </div>
@@ -37,11 +37,11 @@
           <div class="row">
             <div class="d-grid col-6">
               <label for="Contrasenia" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="ContraseniaR" name="Contrasenia" aria-describedby="Contraseña">
+              <input type="password" class="form-control" id="ContraseniaR" name="Contrasenia" aria-describedby="Contraseña" maxlength="32">
             </div>
             <div class="d-grid col-6">
               <label for="CContrasenia" class="form-label">Confirmar contraseña</label>
-              <input type="password" class="form-control" id="CContrasenia" name="CContrasenia" aria-describedby="Confirmar contraseña">
+              <input type="password" class="form-control" id="CContrasenia" name="CContrasenia" aria-describedby="Confirmar contraseña" maxlength="32">
             </div>
           </div>
           <div class="row justify-content-end">

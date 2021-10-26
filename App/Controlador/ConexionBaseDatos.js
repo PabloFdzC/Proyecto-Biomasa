@@ -28,7 +28,6 @@ class ConexionBaseDatos{
     var con = this.#conexion;
     var gt = this.getTipo;
     var csn = this.cambiaStringNull;
-    console.log(params);
     return new Promise(function(resolve, reject){
       var pedido = new mssql.Request();
       var malo = false;
@@ -71,6 +70,8 @@ class ConexionBaseDatos{
       case "string":
         if(nombre == "Descripcion"){
           return mssql.VarChar(256);
+        } if(nombre == "Telefno"){
+          return mssql.VarChar(16);
         } else {
           return mssql.VarChar(32);
         }

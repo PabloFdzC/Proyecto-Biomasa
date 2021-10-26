@@ -14,7 +14,7 @@ navigation.get('/IniciarSesion', function (req, res) {
 });
 
 navigation.get('/ComprarBiomasa', function (req, res) {
-  if(req.session.Id){
+  if(req.session.TipoUsuario === "Comprador"){
     res.render('ComprarBiomasa.ejs');
   } else {
     res.redirect('/IniciarSesion');
@@ -22,84 +22,81 @@ navigation.get('/ComprarBiomasa', function (req, res) {
 });
 
 navigation.get('/MiBiomasa', function (req, res) {
-  if(req.session.Id){
+  if(req.session.TipoUsuario === "Vendedor"){
     res.render('MiBiomasa.ejs');
   } else {
     res.redirect('/IniciarSesion');
   }
 });
 
+navigation.get('/BiomasaVendida', function (req, res) {
+  if(req.session.TipoUsuario === "Vendedor"){
+    res.render('BiomasaVendida.ejs');
+  } else {
+    res.redirect('/IniciarSesion');
+  }
+});
+
 navigation.get('/TipoUsuario', function (req, res) {
-  if(req.session.Id){
-    if(req.session.TipoUsuario === "Administrador"){
-      res.render('VentanaCardsSimple.ejs', 
-      {
-        ventana:"TIPOUSUARIO",
-        tituloLista: "Tipos de usuario",
-        tituloAM: "tipo de usuario"
-      });
-    }
+  if(req.session.TipoUsuario === "Administrador"){
+    res.render('VentanaCardsSimple.ejs', {
+      ventana:"TIPOUSUARIO",
+      tituloLista: "Tipos de usuario",
+      tituloAM: "tipo de usuario"
+    });
   } else {
     res.redirect('/IniciarSesion');
   }
 });
 
 navigation.get('/Etiquetas', function (req, res) {
-  if(req.session.Id){
-    if(req.session.TipoUsuario === "Administrador"){
-      res.render('VentanaCardsSimple.ejs', 
-      {
-        ventana:"ETIQUETAS",
-        tituloLista: "Etiquetas",
-        tituloAM: "etiqueta"
-      });
-    }
+  if(req.session.TipoUsuario === "Administrador"){
+    res.render('VentanaCardsSimple.ejs', {
+      ventana:"ETIQUETAS",
+      tituloLista: "Etiquetas",
+      tituloAM: "etiqueta"
+    });
   } else {
     res.redirect('/IniciarSesion');
   }
 });
 
 navigation.get('/Unidades', function (req, res) {
-  if(req.session.Id){
-    if(req.session.TipoUsuario === "Administrador"){
-      res.render('VentanaCardsSimple.ejs', 
-      {
-        ventana:"UNIDADES",
-        tituloLista: "Unidad",
-        tituloAM: "unidad"
-      });
-    }
+  if(req.session.TipoUsuario === "Administrador"){
+    res.render('VentanaCardsSimple.ejs', 
+    {
+      ventana:"UNIDADES",
+      tituloLista: "Unidad",
+      tituloAM: "unidad"
+    });
   } else {
     res.redirect('/IniciarSesion');
   }
 });
 
 navigation.get('/Usuarios', function (req, res) {
-  if(req.session.Id){
-    if(req.session.TipoUsuario === "Administrador"){
-      res.render('Usuarios.ejs', {ventana:"USUARIOS",});
-    }
+  if(req.session.TipoUsuario === "Administrador"){
+    res.render('Usuarios.ejs', {ventana:"USUARIOS",});
   } else {
     res.redirect('/IniciarSesion');
   }
 });
 
 navigation.get('/SesionIniciada', function (req, res) {
-  if(req.session.Id){
-    switch(req.session.TipoUsuario){
-      case "Administrador":
-        res.redirect('/Usuarios');
-        break;
-      case "Comprador":
-        res.redirect('/ComprarBiomasa');
-        break;
-      case "Vendedor":
-        res.redirect('/MiBiomasa');
-        break;
-    }
-  } else {
-    res.redirect('/IniciarSesion');
+  switch(req.session.TipoUsuario){
+    case "Administrador":
+      res.redirect('/Usuarios');
+      break;
+    case "Comprador":
+      res.redirect('/ComprarBiomasa');
+      break;
+    case "Vendedor":
+      res.redirect('/BiomasaVendida');
+      break;
+    default:
+      res.redirect('/IniciarSesion');
   }
+  
 });
 
 navigation.get('/Perfil', async function (req, res) {

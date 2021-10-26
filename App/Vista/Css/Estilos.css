@@ -164,3 +164,8 @@ textarea {
   max-height: 4px;
   margin: auto;
 }
+
+.precio{
+  border-top-style: solid;
+  border-top-color: #184D47;
+}

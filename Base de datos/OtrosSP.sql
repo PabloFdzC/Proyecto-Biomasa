@@ -79,7 +79,7 @@ AS
 BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
-		IF ((SELECT [Cantidad] FROM [dbo].[Biomasa] WHERE [Id] = @IdBiomasa AND [IdUsuario] = @IdUsuario) > @Cantidad)
+		IF ((SELECT [Cantidad] FROM [dbo].[Biomasa] WHERE [Id] = @IdBiomasa) > @Cantidad)
 			BEGIN
 				EXEC [dbo].[CreateCompras] @IdBiomasa, @IdUsuario, @Cantidad, @Precio
 
@@ -260,10 +260,11 @@ AS
 BEGIN
 SET NOCOUNT ON
 	BEGIN TRY
-		SELECT B.Nombre, C.[Cantidad], C.[Precio]
+		SELECT B.Nombre, C.[Cantidad], C.[Precio], U.Nombre NombreUsuario, U.Telefono, U.Email, C.Id IdCompra
 		FROM [dbo].[Compras] C
-		INNER JOIN Biomasa B ON [IdBiomasa] = B.[Id]
-		WHERE C.[IdUsuario] = @IdUsuario
+		INNER JOIN Biomasa B ON C.[IdBiomasa] = B.[Id]
+		INNER JOIN Usuario U ON U.[Id] = C.[IdUsuario]
+		WHERE B.[IdUsuario] = @IdUsuario
 	END TRY
 
 	BEGIN CATCH
@@ -286,6 +287,28 @@ SET NOCOUNT ON
 		SELECT Id, Nombre
 		FROM [dbo].[TipoUsuario]
 		WHERE Id != 1 AND Nombre != 'Administrador'
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[GetUsuarios]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetUsuarios]
+END 
+GO
+CREATE PROC [dbo].[GetUsuarios]
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id, Nombre
+		FROM [dbo].[Usuario]
+		WHERE Activo = 1
 	END TRY
 
 	BEGIN CATCH

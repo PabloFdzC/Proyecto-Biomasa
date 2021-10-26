@@ -58,8 +58,12 @@ OperacionesUsuario.post('/eliminarUsuario', async function(req, res){
 
 OperacionesUsuario.get('/mostrarUsuario', async function(req, res){
   try{
-    var resultado = await ctrlUs.mostrar();
-    res.render('Usuarios.ejs', {resultado});
+    if(req.session.TipoUsuario == "Administrador"){
+      var lista = await ctrlUs.mostrar({});
+      res.render('UsuarioCards.ejs', {lista});
+    } else {
+      throw "No es administrador";
+    }
   }catch(err){
     console.log(err);
     res.status(400);

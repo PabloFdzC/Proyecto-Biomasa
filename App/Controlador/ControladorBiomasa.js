@@ -71,7 +71,7 @@ class ControladorBiomasa{
       });
     }
     for(let e of etiquetasE){
-      let r2 = await this.#conexionBaseDatos.query('DeleteBiomasaXEtiqueta', { //Borrar pensarlo mejor
+      let r2 = await this.#conexionBaseDatos.query('DeleteBiomasaXEtiqueta', {
         IdEtiqueta:e,
         IdBiomasa:elem.Id
       });
@@ -84,9 +84,29 @@ class ControladorBiomasa{
     return r; 
   }
 
+  async comprar(elem){
+    var r = await this.#conexionBaseDatos.query('ComprarBiomasa', elem);
+    return r;
+  }
+
+  async mostrarVentasBiomasa(elem){
+    var r = await this.#conexionBaseDatos.query('GetComprasVendedor', elem);
+    var datos = [];
+    for(let e of r.recordset){
+      let u = {
+        Nombre: e.NombreUsuario,
+        Telefono: e.Telefono,
+        Email: e.Email
+      }
+      e.Usuario = this.#ctrlUsuario.convertirAObjeto(u);
+      datos.push(this.convertirAObjeto(e));
+    }
+    return datos; 
+  }
+
   convertirAObjeto(elem){
     return new Biomasa(elem.Id, elem.Nombre, elem.Descripcion, elem.Precio,
-      elem.Cantidad, elem.Unidad, elem.Etiquetas, elem.Usuario);
+      elem.Cantidad, elem.Unidad, elem.Etiquetas, elem.Usuario, elem.IdCompra);
   }
 
 }

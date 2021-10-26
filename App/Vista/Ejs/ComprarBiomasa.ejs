@@ -9,10 +9,10 @@
             <label for="Busca" class="form-label">Buscar biomasa</label>
             <div class="row">
               <div class="col-10">
-                <input type="text" class="form-control" id="Busca" name="Parametro" aria-describedby="Buscar biomasa" required>
+                <input type="text" class="form-control" id="Busca" name="Parametro" aria-describedby="Buscar biomasa" maxlength="32">
               </div>
               <div class="col-2">
-                <button type="submit" form="formRegistrarse" class="btn btn-primary enviaRegistrase">Buscar</button>
+                <button type="submit" form="buscarBiomasa" class="btn btn-primary">Buscar</button>
               </div>
             </div>
           </div>
@@ -35,12 +35,15 @@
                   <label class="form-label">Total disponible</label>
                   <label id="TotalDisponible" class="form-label"></label>
                 </div>
-                <div class="d-grid col-6">
+                <div class="d-grid col-6 position-relative">
                   <label for="Cantidad" class="form-label">Cantidad por comprar</label>
                   <input type="number" class="form-control" id="Cantidad" name="Cantidad" aria-describedby="Cantidad por comprar">
+                  <div class="invalid-tooltip" id="invCantidad">
+                    No se puede comprar más de lo que existe.
+                  </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-2 pt-2 precio">
                 <div class="d-grid col-6">
                   <label class="form-label">Precio total:</label>
                 </div>
@@ -54,7 +57,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
               </div>
               <div class="col-3">
-                <button type="submit" class="btn btn-primary" form="formComprar">Enviar</button>
+                <button id="comprarBiomasa" type="submit" class="btn btn-primary" form="formComprar">Enviar</button>
               </div>
             </div>
           </form>

@@ -1,6 +1,7 @@
 class Biomasa{
 
   #id = -1;
+  #idCompra = -1;
   #nombre = "";
   #descripcion = "";
   #precio = 0.0;
@@ -23,6 +24,10 @@ class Biomasa{
 
   getId(){
     return this.#id;
+  }
+
+  getIdCompra(){
+    return this.#idCompra;
   }
 
   getNombre(){
@@ -51,6 +56,10 @@ class Biomasa{
   
   getUsuario(){
     return this.#usuario;
+  }
+
+  setIdCompra(idCompra){
+    this.#idCompra = idCompra;
   }
 
   setNombre(nombre){
