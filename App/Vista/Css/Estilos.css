@@ -133,6 +133,7 @@ textarea {
 }
 
 .linkDatosClaseTexto{
+  width: -moz-fit-content;
   width: fit-content;
   padding: 0;
 }
