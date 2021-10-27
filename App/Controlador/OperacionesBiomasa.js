@@ -88,7 +88,7 @@ OperacionesBiomasa.get('/mostrarVentasBiomasa', async function(req, res){
   }
 });
 
-OperacionesBiomasa.get('/eliminarCompra', async function(req, res){
+OperacionesBiomasa.post('/eliminarCompra', async function(req, res){
   try{
     var r = await ctrlBiom.eliminarCompra(req.body);
     res.send(r);

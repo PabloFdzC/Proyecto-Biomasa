@@ -32,7 +32,7 @@ class Biomasa{
     return await Utilidades.ajaxCall('/mostrarVentasBiomasa', 'GET', {});
   }
 
-  async eliminarCompra(){
+  async eliminarCompra(info){
     let i = Utilidades.convertirAJSON(info);
     return await Utilidades.ajaxCall('/eliminarCompra', 'POST', i, "Se eliminó con éxito");
   }

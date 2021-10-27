@@ -104,6 +104,11 @@ class ControladorBiomasa{
     return datos; 
   }
 
+  async eliminarCompra(elem){
+    var r = await this.#conexionBaseDatos.query('DeleteCompras', elem);
+    return r; 
+  }
+
   convertirAObjeto(elem){
     return new Biomasa(elem.Id, elem.Nombre, elem.Descripcion, elem.Precio,
       elem.Cantidad, elem.Unidad, elem.Etiquetas, elem.Usuario, elem.IdCompra);

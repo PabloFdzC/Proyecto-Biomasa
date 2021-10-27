@@ -46,12 +46,25 @@ $('body').ready(function(){
   const insertaEtiquetaHtml = function(val, text){
     if(val != ""){
       val = parseInt(val);
-      if(!listaEtiquetasA.includes(val) && !listaEtiquetas.includes(val)){
-        if(esModificar){
+      let metido = false;
+      if(esModificar){
+        if(listaEtiquetas.includes(val)){
+          let iLE = listaEtiquetasE.indexOf(val);
+          if(iLE > -1){
+            listaEtiquetasE.splice(iLE, 1);
+            metido = true;
+          }
+        } else if(!listaEtiquetasA.includes(val)){
           listaEtiquetasA.push(val);
-        }else{
-          listaEtiquetas.push(val);
+          metido = true;
         }
+      }else{
+        if(!listaEtiquetas.includes(val)){
+          listaEtiquetas.push(val);
+          metido = true;
+        }
+      }
+      if(metido){
         $('#etiquetasEscogidos').append(`
         <div class="etiqueta ps-3 pe-3 pt-2 pb-2 text-center m-1" title="`+val+`" id="`+val+`">
           `+text+`
@@ -151,7 +164,12 @@ $('body').ready(function(){
       if(listaEtiquetasE.length+1 === listaEtiquetas.length && listaEtiquetasA.length === 0){
         muestraMensaje('Fallo', 'Debe existir al menos 1 etiqueta');
       }else{
-        listaEtiquetasE.push(val);
+        let i = listaEtiquetasA.indexOf(val);
+        if(i > -1){
+          listaEtiquetasA.splice(i, 1);
+        } else {
+          listaEtiquetasE.push(val);
+        }
         $(this).remove();
       }
     } else {

@@ -10,7 +10,7 @@ class Biomasa{
   #etiquetas = [];
   #usuario = null;
 
-  constructor(id, nombre, descripcion, precio, cantidad, unidad, etiquetas, usuario){
+  constructor(id, nombre, descripcion, precio, cantidad, unidad, etiquetas, usuario, idCompra){
 
     this.#id = id;
     this.#nombre = nombre;
@@ -20,6 +20,7 @@ class Biomasa{
     this.#unidad = unidad;
     this.#etiquetas = etiquetas;
     this.#usuario = usuario;
+    this.#idCompra = idCompra;
   }
 
   getId(){

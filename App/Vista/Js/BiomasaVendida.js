@@ -17,5 +17,20 @@ $('body').ready(function(){
     }
   };
 
+  $('body').on('click', '.eliminarCompra', async function(event){
+    let val = $(this).attr('value');
+    try{
+      let info = new FormData();
+      info.append('Id', parseInt(val));
+      let r = await biomasa.eliminarCompra(info);
+      if(r){
+        const card = $(this).parent().parent().parent().parent().parent().parent();
+        card.remove();
+      }
+    }catch(err){
+      muestraMensaje("Fallo", err.responseText);
+    }
+  });
+
   cargarBiomasa();
 });
